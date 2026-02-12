@@ -10,3 +10,7 @@ class student:
         
     def __repr__(self):
         pass
+    
+    def squares(n):
+        return n**2
+    
