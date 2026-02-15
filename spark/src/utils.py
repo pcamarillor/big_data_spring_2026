@@ -12,4 +12,7 @@ class Student:
         print(f"name:{self._name}")
         for g in self._grades:
             print(f"grade:{g}")
+
+def squares(n):
+    return n**2
         
