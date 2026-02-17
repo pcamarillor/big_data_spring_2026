@@ -6,9 +6,9 @@ services:
       - "9090:8080"
       - "7077:7077"
     volumes:
-       - ../spark/../notebooks:/opt/spark/work-dir/notebooks
-       - ../spark/../data:/opt/spark/work-dir/data
-       - ../spark/../src:/opt/spark/work-dir/src
+       - ../../spark/../notebooks:/opt/spark/work-dir/notebooks
+       - ../../spark/../data:/opt/spark/work-dir/data
+       - ../../spark/../src:/opt/spark/work-dir/src
     environment:
       - SPARK_LOCAL_IP=spark-master
       - PYTHONPATH=/opt/spark/work-dir/src
@@ -24,9 +24,9 @@ services:
       - SPARK_EXECUTOR_MEMORY=256m
       - PYTHONPATH=/opt/spark/work-dir/src
     volumes:
-       - ../spark/../notebooks:/opt/spark/work-dir/notebooks
-       - ../spark/../data:/opt/spark/work-dir/data
-       - ../spark/../src:/opt/spark/work-dir/src
+       - ../../spark/../notebooks:/opt/spark/work-dir/notebooks
+       - ../../spark/../data:/opt/spark/work-dir/data
+       - ../../spark/../src:/opt/spark/work-dir/src
   spark-notebook:
     image: spark-base:latest
     depends_on:
