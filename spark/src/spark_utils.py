@@ -1,8 +1,6 @@
 import findspark
 findspark.init()
-
 from pyspark.sql import SparkSession
-
 from pyspark.sql.types import StructField, \
                                 StringType, \
                                 StructType, \
