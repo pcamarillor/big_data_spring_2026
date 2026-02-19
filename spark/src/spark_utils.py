@@ -2,7 +2,7 @@ import findspark
 findspark.init()
 
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType, LongType, ShortType, DoubleType, BooleanType, DateType, TimestampType, BinaryType, ArrayType, MapType
 
 class SparkUtils:
     def __init__(self, master_url, appname):
