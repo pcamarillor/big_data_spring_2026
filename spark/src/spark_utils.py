@@ -1,6 +1,8 @@
 import findspark
 findspark.init()
 
+
+from pyspark.sql.functions import col, when,aggregate,avg,count,isnull
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructField,StructType,StringType,TimestampType,DoubleType,IntegerType,LongType,ShortType,FloatType,BooleanType,DateType,BinaryType,ArrayType
 
@@ -57,3 +59,7 @@ class SparkUtils:
             struct_fields.append(struct_field)
 
         return StructType(struct_fields)
+    
+    @staticmethod
+    def count_nulls(df):
+        return df.select([count(when(isnull(c), c)).alias(c) for c in df.columns])
