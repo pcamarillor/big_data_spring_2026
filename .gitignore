@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
+spark/notebooks/.Trash-0/
 # Distribution / packaging
 .Python
 build/
@@ -205,3 +206,6 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+.DS_Store
+.vscode/settings.json
+spark/data/
