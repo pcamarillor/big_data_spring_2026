@@ -1,4 +1,4 @@
-class student:
+class Student:
     def __init__(self,name,grade_1):
         self._name = name
         self._grades = []
@@ -12,4 +12,6 @@ class student:
     
     def _repr_(self):
         print("Student(name:{self._name})")
+
+
               
