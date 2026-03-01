@@ -208,3 +208,5 @@ __marimo__/
 .DS_Store
 .vscode/settings.json
 spark/data/quick_commerce/quick_commerce_data_raw.csv
+spark/data/car_service/
+.Trash-0/
