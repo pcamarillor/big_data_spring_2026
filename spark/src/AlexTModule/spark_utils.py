@@ -20,7 +20,7 @@ class SparkUtils:
     def stop_spark_session(self):
         self._spark.stop()
 
-    staticmethod
+    @staticmethod
     def generate_schema(columns_info) -> StructType:
         """
         Generates a list of StructField objects from a list of tuples.
