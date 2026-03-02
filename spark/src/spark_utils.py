@@ -2,7 +2,8 @@ import findspark
 findspark.init()
 
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType, DoubleType, BooleanType, DateType, TimestampType, BinaryType, ArrayType, LongType, ShortType
+from pyspark.sql.functions import when, count, isnull
 
 class SparkUtils:
     def __init__(self, master_url, appname):
@@ -19,21 +20,7 @@ class SparkUtils:
         return self._spark.sparkContext
 
     @staticmethod
-    def generate_schema(schema_list):
-        
-        # StringType: Represents string values.
-        # IntegerType: Represents integer values.
-        # LongType: Represents long integer values.
-        # ShortType: Represents short integer values.
-        # DoubleType: Represents double-precision floating-point values.
-        # FloatType: Represents single-precision floating-point values.
-        # BooleanType: Represents boolean values (True/False).
-        # DateType: Represents date values.
-        # TimestampType: Represents timestamp values.
-        # BinaryType: Represents binary data.
-        # ArrayType: Represents arrays of elements.
-        # MapType: Represents key-value pairs.
-        # StructType: Represents nested structures (complex types).
+    def generate_schema(columns_info):
 
         type_mapping = {
             'string': StringType(),
@@ -46,9 +33,22 @@ class SparkUtils:
             'date': DateType(),
             'timestamp': TimestampType(),
             'binary': BinaryType(),
-            'array': ArrayType(StringType()),
-            'map': MapType(StringType(), StringType()),
+            'array_int': ArrayType(IntegerType()),
+            'array_string': ArrayType(StringType()),
             'struct': StructType()
         }
-        fields = [StructField(name, type_mapping.get(dtype, StringType()), True) for name, dtype in schema_list]
-        return StructType(fields)
+
+        struct_fields = []
+        for column_info in columns_info:
+            if column_info[1] not in type_mapping:
+                raise ValueError(f"Unsupported data type: {column_info[1]}")
+            
+            struct_field = StructField(column_info[0], type_mapping[column_info[1]], True)
+            struct_fields.append(struct_field)
+
+        return StructType(struct_fields)
+
+    @staticmethod
+    def count_nulls(df):
+        null_count_df = df.select([count(when(isnull(c), c)).alias(c) for c in df.columns])
+        return null_count_df
