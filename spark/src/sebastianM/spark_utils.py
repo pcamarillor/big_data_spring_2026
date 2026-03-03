@@ -14,6 +14,10 @@ class SparkUtils:
                 .config("spark.ui.port", "4040") \
                 .getOrCreate()
     
+    @property
+    def spark(self):
+        return self._spark
+
     @staticmethod
     def generate_schema(columns_info) -> StructType:
         """
