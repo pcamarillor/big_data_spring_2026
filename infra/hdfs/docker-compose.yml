@@ -8,8 +8,8 @@ services:
       - HADOOP_HOME=/opt/hadoop
       - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
     volumes:
-      - ../../data/tmp:/tmp/
-      - ../../data/namenode:/opt/hadoop/data/nameNode
+      - ../../spark/data:/tmp/data
+      - ../../spark/data_hdfs/namenode:/opt/hadoop/data/nameNode
       - ./config:/opt/hadoop/etc/hadoop
       - ./start-hdfs.sh:/start-hdfs.sh
       - ./config/log4j.properties:/opt/hadoop/etc/hadoop/log4j.properties
@@ -29,7 +29,7 @@ services:
       - HADOOP_HOME=/opt/hadoop
       - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
     volumes:
-      - ../../data/datanode1:/opt/hadoop/data/dataNode
+      - ../../spark/data_hdfs/datanode1:/opt/hadoop/data/dataNode
       - ./config:/opt/hadoop/etc/hadoop
       - ./init-datanode.sh:/init-datanode.sh
       - ./config/log4j.properties:/opt/hadoop/etc/hadoop/log4j.properties
@@ -49,7 +49,7 @@ services:
       - HADOOP_HOME=/opt/hadoop
       - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
     volumes:
-      - ../../data/datanode2:/opt/hadoop/data/dataNode
+      - ../../spark/data_hdfs/datanode2:/opt/hadoop/data/dataNode
       - ./config:/opt/hadoop/etc/hadoop
       - ./init-datanode.sh:/init-datanode.sh
       - ./config/log4j.properties:/opt/hadoop/etc/hadoop/log4j.properties
@@ -61,5 +61,5 @@ services:
       - spark_cluster_default
 networks:
   spark_cluster_default:
-    name: spark_cluster_default
-    driver: bridge
+    name: spark-cluster_default
+    external: true
