@@ -1,0 +1,8 @@
+brand_id,brand_info
+1,"{'brand_name': 'Mercedes-Benz', 'country': 'Germany'}"
+2,"{'brand_name': 'BMW', 'country': 'Germany'}"
+3,"{'brand_name': 'Audi', 'country': 'Germany'}"
+4,"{'brand_name': 'Ford', 'country': 'US'}"
+5,"{'brand_name': 'BYD', 'country': 'China'}"
+6,"{'brand_name': 'Honda', 'country': 'Japan'}"
+7,"{'brand_name': 'Toyota', 'country': 'Japan'}"
