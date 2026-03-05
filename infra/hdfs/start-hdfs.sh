@@ -15,7 +15,7 @@ set -e
 NAMENODE_DIR="/opt/hadoop/data/nameNode"
 
 # Check if the NameNode has already been formatted
-if [ ! -d "\$NAMENODE_DIR/current" ]; then
+if [ ! -d "$NAMENODE_DIR/current" ]; then
     echo "====================================================="
     echo "🚀 Formatting NameNode as no existing metadata found."
     echo "====================================================="

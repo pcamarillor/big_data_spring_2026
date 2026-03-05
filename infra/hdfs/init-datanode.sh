@@ -16,22 +16,22 @@ DATANODE_DIR="/opt/hadoop/data/dataNode"
 
 # Clean the DataNode directory (if needed)
 echo "====================================================="
-echo "🗑️  Cleaning DataNode directory: \$DATANODE_DIR"
+echo "🗑️  Cleaning DataNode directory: $DATANODE_DIR"
 echo "====================================================="
 
 # Check if the DataNode directory exists
-if [ -d "\$DATANODE_DIR" ]; then
-    rm -rf "\$DATANODE_DIR"/*
+if [ -d "$DATANODE_DIR" ]; then
+    rm -rf "$DATANODE_DIR"/*
     echo "✅ DataNode directory cleaned successfully."
 else
     echo "📁 DataNode directory does not exist. Creating..."
-    mkdir -p "\$DATANODE_DIR"
+    mkdir -p "$DATANODE_DIR"
 fi
 
 # Set correct ownership and permissions
 echo "🔧 Setting permissions for DataNode directory..."
-chown -R hadoop:hadoop "\$DATANODE_DIR"
-chmod 755 "\$DATANODE_DIR"
+chown -R hadoop:hadoop "$DATANODE_DIR"
+chmod 755 "$DATANODE_DIR"
 
 # Start the DataNode service
 echo "======================================="
