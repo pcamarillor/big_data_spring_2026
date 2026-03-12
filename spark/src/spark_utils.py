@@ -1,26 +1,31 @@
 import findspark
 findspark.init()
 
-
-from pyspark.sql.functions import col, when,aggregate,avg,count,isnull
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructField,StructType,StringType,TimestampType,DoubleType,IntegerType,LongType,ShortType,FloatType,BooleanType,DateType,BinaryType,ArrayType
+from pyspark.sql.types import StructType, StringType, IntegerType, LongType, ShortType, DoubleType, FloatType, BooleanType, DateType, FloatType, BooleanType, DateType, TimestampType, BinaryType, StructField, ArrayType
+from pyspark.sql.functions import count, when, isnull
 
 class SparkUtils:
-    def __init__(self, master_url, app_name):
-        self._spark = SparkSession.builder \
+
+    def __init__(self, app_name, master_url, spark_jars=None):
+        if spark_jars is not None:
+           self._spark = (SparkSession.builder
+                .appName(app_name)
+                .master(master_url)
+                .config("spark.ui.port", "4040")
+                .config("spark.jars", spark_jars)
+                .getOrCreate())
+        else:
+            self._spark = SparkSession.builder \
                 .appName(app_name) \
                 .master(master_url) \
                 .config("spark.ui.port", "4040") \
                 .getOrCreate()
+    
+    @property
+    def spark(self):
+        return self._spark
 
-    def __repr__(self):
-        return str(self._spark.sparkContext)
-    
-    def spark_context(self):
-        return self._spark.sparkContext
-    
-    
     @staticmethod
     def generate_schema(columns_info) -> StructType:
         """
@@ -58,8 +63,8 @@ class SparkUtils:
             struct_field = StructField(column_info[0], type_mapping[column_info[1]], True)
             struct_fields.append(struct_field)
 
-        return StructType(struct_fields)
-    
+        return StructType(struct_fields) 
+
     @staticmethod
     def count_nulls(df):
         return df.select([count(when(isnull(c), c)).alias(c) for c in df.columns])
