@@ -35,7 +35,7 @@ services:
       - ./config/log4j.properties:/opt/hadoop/etc/hadoop/log4j.properties
     depends_on:
       - namenode
-    command: [ "/bin/bash", "/init-datanode.sh" ]
+    command: [ "/bin/bash" ]
     restart: always
     networks:
       - spark_cluster_default
