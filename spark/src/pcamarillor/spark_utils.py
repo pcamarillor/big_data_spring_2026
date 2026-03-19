@@ -7,13 +7,25 @@ from pyspark.sql.functions import count, when, isnull
 
 class SparkUtils:
 
-    def __init__(self, app_name, master_url):
-        self._spark = SparkSession.builder \
+    def __init__(self, app_name, master_url, spark_jars=None):
+        if spark_jars is not None:
+           self._spark = (SparkSession.builder
+                .appName(app_name)
+                .master(master_url)
+                .config("spark.ui.port", "4040")
+                .config("spark.jars", spark_jars)
+                .getOrCreate())
+        else:
+            self._spark = SparkSession.builder \
                 .appName(app_name) \
                 .master(master_url) \
                 .config("spark.ui.port", "4040") \
                 .getOrCreate()
     
+    @property
+    def spark(self):
+        return self._spark
+
     @staticmethod
     def generate_schema(columns_info) -> StructType:
         """
