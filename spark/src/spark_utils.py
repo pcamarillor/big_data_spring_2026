@@ -7,8 +7,16 @@ from pyspark.sql.functions import count, when, isnull
 
 class SparkUtils:
 
-    def __init__(self, master_url="spark://spark-master:7077", app_name="helloworld"):
-        self._spark = SparkSession.builder.appName(app_name).master(master_url).config("spark.ui.port", "4040").getOrCreate()
+    def __init__(self, master_url="spark://spark-master:7077", app_name="helloworld",spark_jars=None):
+        if spark_jars is not None:
+            self._spark = (SparkSession.builder
+                .appName(app_name)
+                .master(master_url)
+                .config("spark.ui.port", "4040")
+                .config("spark.jars", spark_jars)
+                .getOrCreate())
+        else:
+            self._spark = SparkSession.builder.appName(app_name).master(master_url).config("spark.ui.port", "4040").getOrCreate()
 
     def __repr__(self):
         return str(self._spark.sparkContext)
