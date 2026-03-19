@@ -9,19 +9,38 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 from pyspark.sql.functions import when, count, isnull
 class SparkUtils:
 
-        def __init__(self,master_url, appname):
+        def __init__(self, app_name, master_url, spark_jars=None):
+                if spark_jars is not None:
+                        self._spark = (SparkSession.builder
+                                .appName(app_name)
+                                .master(master_url)
+                                .config("spark.ui.port", "4040")
+                                .config("spark.jars", spark_jars)
+                                .getOrCreate())
+                else:
+                        self._spark = SparkSession.builder \
+                                .appName(app_name) \
+                                .master(master_url) \
+                                .config("spark.ui.port", "4040") \
+                                .getOrCreate()
 
-                self._spark = SparkSession.builder \
-                        .appName("Spark SQL example") \
-                        .config("spark.ui.port", "4040") \
-                        .getOrCreate()
+        """
+                def __init__(self,master_url, appname):
+
+                        self._spark = SparkSession.builder \
+                                .appName("Spark SQL example") \
+                                .config("spark.ui.port", "4040") \
+                                .getOrCreate()
+                        
+                def __repr__(self):
+                        return str(self._spark.sparkContext)
                 
-        def __repr__(self):
-                return str(self._spark.sparkContext)
-        
-        def spark_context(self):
-                return self._spark.sparkContext
-        
+                def spark_context(self):
+                        return self._spark.sparkContext
+        """
+        @property
+        def spark(self):
+                return self._spark       
         
         @staticmethod
         def generate_schema(columns_info) -> StructType:
