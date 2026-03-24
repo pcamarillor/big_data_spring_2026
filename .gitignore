@@ -214,3 +214,5 @@ spark/data_hdfs/
 
 #big data files
 spark/data/neo4j_videogames/
+data_neo4j/transactions/neo4j/neostore.transaction.db.0
+data_neo4j/transactions/system/neo4j/systransaction.db.0
