@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
+spark/data_neo4j/
 spark/notebooks/.Trash-0/
 # Distribution / packaging
 .Python
