@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 spark/notebooks/.Trash-0/
+data_neo4j/
 # Distribution / packaging
 .Python
 build/
@@ -209,3 +210,4 @@ __marimo__/
 .DS_Store
 .vscode/settings.json
 spark/data/
+spark/data_hdfs/
