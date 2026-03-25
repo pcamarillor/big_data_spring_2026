@@ -1,6 +1,7 @@
-from pyspark.sql import SparkSession, functions as F
+from pyspark.sql import functions as F
+from spark_utils_emr import SparkUtils
 
-spark = SparkSession.builder.appName("EMR-Test").getOrCreate()
+su = SparkUtils("emr-test")
 
 # Create sample data
 data = [
@@ -9,13 +10,13 @@ data = [
     ("Animal Crossing", 4.7, 2100),
     ("Smash Bros", 4.6, 1800),
 ]
-df = spark.createDataFrame(data, ["game", "rating", "reviews"])
+df = su.spark.createDataFrame(data, ["game", "rating", "reviews"])
 
 # Run some transformations
 result = (df
     .withColumn("weighted_score", F.round(F.col("rating") * F.log(F.col("reviews")), 2))
     .orderBy(F.desc("weighted_score")))
 
-result.write.mode("overwrite").csv("s3://iteso-project/output/emr-test/")
+result.write.mode("overwrite").csv("s3://iteso-bucket/output/emr-test/")
 
-spark.stop()
+su.spark.stop()
