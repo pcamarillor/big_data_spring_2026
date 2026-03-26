@@ -7,23 +7,6 @@ from pyspark.sql.functions import count, when, isnull
 
 class SparkUtils:
 
-<<<<<<< HEAD
-    def __init__(self, app_name, master_url, spark_jars=None):
-        if spark_jars is not None:
-           self._spark = (SparkSession.builder
-                .appName(app_name)
-                .master(master_url)
-                .config("spark.ui.port", "4040")
-                .config("spark.jars", spark_jars)
-                .getOrCreate())
-        else:
-            self._spark = SparkSession.builder \
-                .appName(app_name) \
-                .master(master_url) \
-                .config("spark.ui.port", "4040") \
-                .getOrCreate()
-    
-=======
     def __init__(self, app_name, master_url=None, spark_jars=None, spark_packages=None):
         spark_builder = (
             SparkSession.builder
@@ -41,7 +24,6 @@ class SparkUtils:
         self._spark = spark_builder.getOrCreate()
         self._spark.conf.set("spark.sql.shuffle.partitions", "5")
 
->>>>>>> lab07
     @property
     def spark(self):
         return self._spark
