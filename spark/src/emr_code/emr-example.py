@@ -16,6 +16,6 @@ result = (df
     .withColumn("weighted_score", F.round(F.col("rating") * F.log(F.col("reviews")), 2))
     .orderBy(F.desc("weighted_score")))
 
-result.write.mode("overwrite").csv("s3://iteso-project/output/emr-test/")
+result.write.mode("overwrite").csv("s3://pddm-202603/output/emr-test/")
 
 spark.stop()
