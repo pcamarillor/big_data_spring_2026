@@ -8,22 +8,29 @@ from pyspark.sql.functions import count, when, isnull
 class SparkUtils:
 
     def __init__(self, master_url="spark://spark-master:7077", app_name="helloworld",spark_jars=None,spark_packages=None):
-            spark_builder = (SparkSession.builder
+            builder = (SparkSession.builder
                 .appName(app_name)
                 .master(master_url)
-                .config("spark.ui.port", "4040")
-                .getOrCreate())
-            
+                .config("spark.ui.port", "4040"))
+
             if spark_jars is not None:
-                spark_builder =spark_builder.builder.config("spark.jars", spark_jars)
+                builder = builder.config("spark.jars", spark_jars)
 
             if spark_packages is not None:
-                spark_builder = spark_builder.config("spark.jars.packages", spark_packages)
+                builder = builder.config("spark.jars.packages", spark_packages)
 
-            self._spark = spark_builder.getOrCreate()
+            self._spark = builder.getOrCreate()
             self._spark.conf.set("spark.sql.shuffle.partitions", "5")
     def __repr__(self):
         return str(self._spark.sparkContext)
+
+    @property
+    def spark(self):
+        return self._spark
+
+    @staticmethod
+    def count_nulls(df):
+        return df.select([count(when(isnull(c),c)).alias(c) for c in df.columns])
 
     @staticmethod
     def generate_schema(columns_info) -> StructType:
@@ -55,17 +62,28 @@ class SparkUtils:
 
         struct_fields = []
         for column_info in columns_info:
-            if column_info[1] not in type_mapping:
+            col_name  = column_info[0]
+            col_type  = column_info[1]
+
+            if col_type == "struct":
+                # Expect a third element with the sub-field definitions
+                if len(column_info) < 3 or not isinstance(column_info[2], list):
+                    raise ValueError(
+                        f"Column '{col_name}' is declared as 'struct' but "
+                        f"no sub-fields list was provided as the third element."
+                    )
+                # Recurse to build the nested StructType
+                nested_schema = SparkUtils.generate_schema(column_info[2])
+                struct_field  = StructField(col_name, nested_schema, True)
+
+            elif column_info[1] not in type_mapping:
                 raise ValueError(f"Unsupported data type: {column_info[1]}")
 
             # Create a StructField for the column
-            struct_field = StructField(column_info[0], type_mapping[column_info[1]], True)
+            else: 
+                struct_field = StructField(column_info[0], type_mapping[column_info[1]], True)
             struct_fields.append(struct_field)
 
         return StructType(struct_fields)
-    
-    @staticmethod
-    def count_nulls(df):
-        return df.select([count(when(isnull(c),c)).alias(c) for c in df.columns])
-    
+
 
