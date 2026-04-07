@@ -1,3 +1,5 @@
+import findspark
+findspark.init()
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StringType, IntegerType, LongType, ShortType, DoubleType, FloatType, BooleanType, DateType, FloatType, BooleanType, DateType, TimestampType, BinaryType, StructField, ArrayType
 from pyspark.sql.functions import count, when, isnull
