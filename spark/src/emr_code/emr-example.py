@@ -1,21 +1,32 @@
-from pyspark.sql import SparkSession, functions as F
+from pyspark.sql import functions as F
+from spark_utils_emr import SparkUtils
+import argparse
 
-spark = SparkSession.builder.appName("EMR-Test").getOrCreate()
+def main():
 
-# Create sample data
-data = [
-    ("Mario Kart", 4.8, 1200),
-    ("Zelda BOTW", 4.9, 3400),
-    ("Animal Crossing", 4.7, 2100),
-    ("Smash Bros", 4.6, 1800),
-]
-df = spark.createDataFrame(data, ["game", "rating", "reviews"])
+    su = SparkUtils("emr-test")
 
-# Run some transformations
-result = (df
-    .withColumn("weighted_score", F.round(F.col("rating") * F.log(F.col("reviews")), 2))
-    .orderBy(F.desc("weighted_score")))
+    # Create sample data
+    data = [
+        ("Mario Kart", 4.8, 1200),
+        ("Zelda BOTW", 4.9, 3400),
+        ("Animal Crossing", 4.7, 2100),
+        ("Smash Bros", 4.6, 1800),
+    ]
+    df = su.spark.createDataFrame(data, ["game", "rating", "reviews"])
 
-result.write.mode("overwrite").csv("s3://pddm-202603/output/emr-test/")
+    # Run some transformations
+    result = (df
+        .withColumn("weighted_score", F.round(F.col("rating") * F.log(F.col("reviews")), 2))
+        .orderBy(F.desc("weighted_score")))
 
-spark.stop()
+    result.show()
+
+    result.write.mode("overwrite").csv(destination)
+
+    su.spark.stop()
+
+if __name__ == "main":
+    main()
+
+

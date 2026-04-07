@@ -1,3 +1,5 @@
+import findspark
+findspark.init()
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StringType, IntegerType, LongType, ShortType, DoubleType, FloatType, BooleanType, DateType, FloatType, BooleanType, DateType, TimestampType, BinaryType, StructField, ArrayType
 from pyspark.sql.functions import count, when, isnull
@@ -10,7 +12,7 @@ class SparkUtils:
             .appName(app_name))
         
         if master_url is not None:
-            spark_builder.master(master_url)
+            spark_builder = spark_builder.master(master_url)
 
         if spark_jars is not None:
             spark_builder = spark_builder.config("spark.jars", spark_jars)
