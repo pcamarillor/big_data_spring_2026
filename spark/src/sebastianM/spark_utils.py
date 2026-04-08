@@ -7,13 +7,23 @@ from pyspark.sql.functions import count, when, isnull
 
 class SparkUtils:
 
-    def __init__(self, app_name, master_url):
-        self._spark = SparkSession.builder \
-                .appName(app_name) \
-                .master(master_url) \
-                .config("spark.ui.port", "4040") \
-                .getOrCreate()
-    
+    def __init__(self, app_name, master_url=None, spark_jars=None, spark_packages=None):
+        spark_builder = (
+            SparkSession.builder
+            .appName(app_name))
+        
+        if master_url is not None:
+            spark_builder.master(master_url)
+
+        if spark_jars is not None:
+            spark_builder = spark_builder.config("spark.jars", spark_jars)
+
+        if spark_packages is not None:
+            spark_builder = spark_builder.config("spark.jars.packages", spark_packages)
+
+        self._spark = spark_builder.getOrCreate()
+        self._spark.conf.set("spark.sql.shuffle.partitions", "5")
+
     @property
     def spark(self):
         return self._spark
@@ -48,11 +58,27 @@ class SparkUtils:
 
         struct_fields = []
         for column_info in columns_info:
-            if column_info[1] not in type_mapping:
-                raise ValueError(f"Unsupported data type: {column_info[1]}")
+            col_name  = column_info[0]
+            col_type  = column_info[1]
 
-            # Create a StructField for the column
-            struct_field = StructField(column_info[0], type_mapping[column_info[1]], True)
+            if col_type == "struct":
+                # Expect a third element with the sub-field definitions
+                if len(column_info) < 3 or not isinstance(column_info[2], list):
+                    raise ValueError(
+                        f"Column '{col_name}' is declared as 'struct' but "
+                        f"no sub-fields list was provided as the third element."
+                    )
+                # Recurse to build the nested StructType
+                nested_schema = SparkUtils.generate_schema(column_info[2])
+                struct_field  = StructField(col_name, nested_schema, True)
+
+            elif col_type not in type_mapping:
+                raise ValueError(f"Unsupported data type: '{col_type}' for column '{col_name}'")
+
+            else:
+                # Create a StructField for the column
+                struct_field = StructField(column_info[0], type_mapping[column_info[1]], True)
+            
             struct_fields.append(struct_field)
 
         return StructType(struct_fields) 
