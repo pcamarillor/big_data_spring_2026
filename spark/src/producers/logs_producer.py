@@ -7,10 +7,10 @@ Generates random .log files in the streaming format expected by log_streaming.py
 
 Usage examples:
   # Local mode — write to a local directory
-  python generate_logs.py local --location ./logs_input --files 3 --lines 50
+  python3 logs_producer.py local --location /opt/spark/work-dir/data/streaming/logs/ --files 5 --lines 12
 
   # Cloud mode — upload to S3 (run on EC2)
-  python generate_logs.py cloud --bucket my-bucket --prefix logs/input --files 3 --lines 50
+  python logs_producer.py cloud --bucket my-bucket --prefix logs/input --files 3 --lines 50
 
 Dependencies (only for cloud mode):
   pip install boto3
@@ -18,6 +18,7 @@ Dependencies (only for cloud mode):
 
 import argparse
 import os
+import time
 import random
 from datetime import datetime, timedelta
 
@@ -97,12 +98,13 @@ def write_local(args):
             f.write(content)
 
         print(f"[{i}/{args.files}] Written: {path}")
+        time.sleep(20)
 
 def write_cloud(args):
     try:
         import boto3
     except ImportError:
-        raise SystemExit("boto3 is not installed. Run: pip install boto3")
+        raise SystemExit("boto3 is not installed. Run: pip3 install boto3")
 
     s3 = boto3.client("s3")
 
