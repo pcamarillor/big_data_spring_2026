@@ -213,3 +213,4 @@ __marimo__/
 spark/data/
 spark/data_hdfs/
 data_neo4j/
+*.pem
