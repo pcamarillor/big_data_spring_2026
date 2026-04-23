@@ -8,7 +8,7 @@ with a random delay of 5 to 15 seconds between each message.
 This simulates a real server emitting log events over time.
 
 Usage:
-  python3 kafka_producer.py --broker localhost:9092 --topic server-logs --records 20
+  python3 kafka_producer.py --broker kafka:9092 --topic server-logs --records 20
 
 Dependencies:
   pip install kafka-python
