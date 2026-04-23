@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
+spark/notebooks/.Trash-0/
 # Distribution / packaging
 .Python
 build/
@@ -197,6 +198,10 @@ cython_debug/
 # Cursor
 #  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
 #  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
+
+# Large database files (Neo4j)
+data_neo4j/
+data_hdfs/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
@@ -205,3 +210,12 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+.DS_Store
+.vscode/settings.json
+spark/data/
+spark/data_hdfs/
+
+
+#big data files
+spark/data/neo4j_videogames/
+data_neo4j/
