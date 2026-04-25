@@ -7,7 +7,8 @@ from pyspark.sql.functions import count, when, isnull
 
 class SparkUtils:
 
-    def __init__(self, app_name, master_url=None, spark_jars=None, spark_packages=None):
+    def __init__(self, app_name, master_url=None, spark_jars=None, 
+             spark_packages=None):
         spark_builder = (
             SparkSession.builder
             .appName(app_name))
