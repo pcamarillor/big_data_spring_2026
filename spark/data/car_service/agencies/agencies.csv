@@ -1,0 +1,6 @@
+agency_id,agency_info
+1,"{'agency_name': 'NYC Rentals', 'city': 'New York'}"
+2,"{'agency_name': 'LA Car Rental', 'city': 'Londres'}"
+3,"{'agency_name': 'Zapopan Auto', 'city': 'Zapopan'}"
+4,"{'agency_name': 'SF Cars', 'city': 'San Francisco'}"
+5,"{'agency_name': 'Mexico Cars', 'city': 'Mexico City'}"
