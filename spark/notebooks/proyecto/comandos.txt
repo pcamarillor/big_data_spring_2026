@@ -1,0 +1,4 @@
+ssh -i [TU-.PEM].pem hadoop@[TU-INSTANCIA]
+aws s3 cp s3://[TU-BUCKET]/scripts/setup_ec2.sh .
+bash setup_ec2.sh
+nohup python3 generate_dataset.py --start-day n --end-day m &
