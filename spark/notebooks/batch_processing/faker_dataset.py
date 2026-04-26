@@ -13,7 +13,7 @@ s3 = boto3.client('s3', region_name='us-east-1')
 BUCKET = 'batch-processing-s3-746812'
 PREFIX = 'raw/transactions/'
 RECORDS_PER_FILE = 500_000
-NUM_FILES = 60  # ~60 archivos de ~500MB c/u = ~30GB total
+NUM_FILES = 76  
 
 CATEGORIES = ['electronics', 'clothing', 'food', 'sports', 'home', 'beauty', 'toys']
 STATUSES = ['completed', 'pending', 'cancelled', 'refunded']
