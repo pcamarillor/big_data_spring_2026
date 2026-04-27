@@ -1,5 +1,3 @@
-import findspark
-findspark.init()
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StringType, IntegerType, LongType, ShortType, DoubleType, FloatType, BooleanType, DateType, FloatType, BooleanType, DateType, TimestampType, BinaryType, StructField, ArrayType
 from pyspark.sql.functions import count, when, isnull
@@ -21,7 +19,6 @@ class SparkUtils:
             spark_builder = spark_builder.config("spark.jars.packages", spark_packages)
 
         self._spark = spark_builder.getOrCreate()
-        self._spark.conf.set("spark.sql.shuffle.partitions", "5")
 
     @property
     def spark(self):
