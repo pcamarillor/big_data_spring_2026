@@ -1,4 +1,5 @@
 from pyspark.sql import functions as F
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, DateType
 from spark_utils_emr import SparkUtils
 import argparse
 
@@ -22,9 +23,40 @@ def main():
     su = SparkUtils("gaming-final-project")
     spark = su.spark
 
+    #Schema
+    schema = StructType([
+        StructField("img", StringType(), True),
+        StructField("title", StringType(), True),
+        StructField("console", StringType(), True),
+        StructField("genre", StringType(), True),
+        StructField("publisher", StringType(), True),
+        StructField("developer", StringType(), True),
+
+        StructField("critic_score", DoubleType(), True),
+        StructField("total_sales", DoubleType(), True),
+        StructField("na_sales", DoubleType(), True),
+        StructField("jp_sales", DoubleType(), True),
+        StructField("pal_sales", DoubleType(), True),
+        StructField("other_sales", DoubleType(), True),
+
+        StructField("release_date", StringType(), True),
+        StructField("last_update", StringType(), True),
+
+        StructField("id", IntegerType(), True),
+        StructField("transaction_id", IntegerType(), True),
+        StructField("user_id", StringType(), True),
+
+        StructField("quantity", IntegerType(), True),
+        StructField("discount", DoubleType(), True),
+        StructField("price", DoubleType(), True),
+
+        StructField("payment_method", StringType(), True),
+        StructField("purchase_date", StringType(), True),
+    ])
+
 
     #Ingestion of the data from the s3 bucket
-    df = spark.read.option("header", True).csv(source)
+    df = spark.read.option("header", True).schema(schema).csv(source)
 
     #DATA CLEANING
     df = df.dropDuplicates()
@@ -37,6 +69,8 @@ def main():
     "console": "Unknown",
     "payment_method": "Unknown"
     })
+
+    df = df.withColumn("console", F.upper(F.trim(F.col("console"))))
 
     #No nulls for numeric fields 
     df = df.fillna({
@@ -62,9 +96,11 @@ def main():
         .withColumn("quantity", F.col("quantity").cast("int"))
         .withColumn("discount", F.col("discount").cast("double"))
         .withColumn("price", F.col("price").cast("double"))
-        .withColumn("purchase_date", F.to_date("purchase_date", "M/d/yyyy"))
-        .withColumn("release_date", F.to_date("release_date", "M/d/yyyy"))
     )
+
+    # FIX de las fechas
+    df = df.withColumn("purchase_date", F.to_date(F.col("purchase_date"), "yyyy-MM-dd")) \
+           .withColumn("release_date", F.to_date(F.col("release_date"), "yyyy-MM-dd"))
 
     #Remove records with no purchase date
     df = df.dropna(subset=["purchase_date"])
@@ -81,10 +117,13 @@ def main():
     #FILTERING AND SORTING
     #Filters by this conditions and shows them in order of their revenue 
     df = (df
-        .filter(F.col("genre") == "Action")
-        .filter(F.col("payment_method") == "Credit Card")
+        .filter(F.lower(F.trim(F.col("genre"))) == "racing")
         .orderBy(F.desc("revenue"))
     )
+
+    df.printSchema()
+    df.select("console").distinct().show()
+    print(df.count())
 
     # AGGREGATION
     #Shows the most selled games based on revenue
@@ -98,14 +137,10 @@ def main():
         )
         .orderBy(F.desc("total_revenue"))
     )
-    
-    df.write \
-        .mode("overwrite") \
-        .partitionBy("console") \
-        .parquet(destination)
+
+    df.write.mode("overwrite").partitionBy("console").parquet(destination)
 
     spark.stop()
-
 
 
 if __name__ == "__main__":
