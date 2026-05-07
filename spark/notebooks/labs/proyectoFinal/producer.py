@@ -15,16 +15,21 @@ confirme la recepción de cada mensaje.
 
 from kafka import KafkaProducer
 from faker import Faker
-import json, random, time
+import json
+import random
+import time
+from datetime import datetime
 
 fake = Faker()
 
+# Asegúrate de que el bootstrap_servers coincida exactamente con la configuración de tu consumidor.
+# Si usan Docker Compose, podría ser 'kafka-1:9092'. Si todo es local sin Docker, 'localhost:9092'.
 producer = KafkaProducer(
     bootstrap_servers='localhost:9092',
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-GENRES = ["RPG", "Action", "FPS", "Sports", "Racing"]
+GENRES = ["RPG", "Action", "FPS", "Sports", "Racing", "Survival Horror", "Simulator"]
 PLATFORMS = ["PC", "PS5", "Xbox", "Switch"]
 
 def generate():
@@ -33,13 +38,15 @@ def generate():
         "game": fake.word().title(),
         "genre": random.choice(GENRES),
         "platform": random.choice(PLATFORMS),
-        "price": round(random.uniform(5, 80), 2)
+        "price": round(random.uniform(5, 80), 2),
+        # Se agrega el timestamp en formato ISO para que la validación de PySpark no falle
+        "timestamp": datetime.utcnow().isoformat() 
     }
 
-print("Producing...")
+print("Producing streaming data to 'videogames' topic...")
 
 while True:
     data = generate()
     producer.send("videogames", data)
-    print(data)
-    time.sleep(1)
+    print(f"Sent: {data}")
+    time.sleep(1) # Simula el flujo continuo de datos
