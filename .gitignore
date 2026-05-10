@@ -219,3 +219,5 @@ spark/data_hdfs/
 #big data files
 spark/data/neo4j_videogames/
 data_neo4j/
+
+*.pem
