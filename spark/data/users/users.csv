@@ -1,0 +1,101 @@
+user_id,username,email,country,city,subscription_type,signup_date,age,preferred_device
+U0000001,johnsonjoshua,donaldgarcia@example.net,Spain,New Roberttown,free,2027-04-26,33,laptop
+U0000002,robinsonwilliam,hoffmanjennifer@example.net,Chile,Robinsonshire,basic,2027-04-05,22,smart_tv
+U0000003,lisa02,jpeterson@example.org,Costa Rica,Curtisfurt,premium,2019-05-11,17,smart_tv
+U0000004,howardmaurice,lindsay78@example.org,Colombia,Millerport,basic,2024-08-31,54,mobile
+U0000005,barbara10,kendragalloway@example.org,Nicaragua,South Joshuastad,basic,2027-01-11,57,Wii
+U0000006,mitchellclark,jacqueline19@example.net,Chile,New Jessica,premium,2025-08-10,33,mobile
+U0000007,stevennelson,gabriellecameron@example.org,Brazil,Port Antonio,premium,2022-10-25,33,tablet
+U0000008,richard13,jason76@example.net,Colombia,Thomasberg,standard,2020-02-23,21,Wii
+U0000009,julieryan,zhurst@example.com,Spain,East William,standard,2028-07-03,38,desktop
+U0000010,camposmichelle,courtneyconner@example.com,USA,South Patrickmouth,premium,2025-01-05,23,Wii
+U0000011,tasha01,kayla51@example.com,Canada,Mooretown,standard,2028-04-20,56,frige
+U0000012,teresa28,harrellkenneth@example.net,Costa Rica,East Nathaniel,basic,2026-11-25,20,mobile
+U0000013,amberosborne,georgetracy@example.org,Chile,Natashaport,standard,2019-11-23,70,laptop
+U0000014,brianhumphrey,millertodd@example.org,Spain,East Donna,premium,2022-02-12,45,frige
+U0000015,josephbrennan,ibrandt@example.net,Brazil,Lake Larry,standard,2022-12-26,29,desktop
+U0000016,samuel87,wrightcaleb@example.org,Canada,New Jeffrey,basic,2024-12-27,62,laptop
+U0000017,zimmermanbrian,whiteheadmichele@example.org,Brazil,West Elizabeth,premium,2023-04-04,33,laptop
+U0000018,ambercummings,esanchez@example.com,Ecuador,North Collin,free,2021-07-27,68,mobile
+U0000019,agomez,dshields@example.net,Ecuador,North Richardmouth,premium,2022-01-01,20,laptop
+U0000020,wrightjames,ltaylor@example.com,Costa Rica,Wrightland,standard,2021-05-20,57,nintendo 3ds
+U0000021,jmorton,williamsyvette@example.org,Cuba,Port Melindaburgh,premium,2020-08-08,32,tablet
+U0000022,ntucker,kbarrera@example.com,Chile,South Josephmouth,standard,2027-05-18,53,Wii
+U0000023,rodney87,jamesrobinson@example.org,Costa Rica,Lake Leeton,premium,2023-01-22,30,tablet
+U0000024,hshaw,brianromero@example.org,El Salvador,New Carlosbury,premium,2020-01-08,64,mobile
+U0000025,kwilson,bethwilliams@example.org,Spain,Sandovalshire,basic,2026-01-14,26,Wii
+U0000026,sarah35,josephanderson@example.net,Panama,Stephenland,free,2023-04-26,40,nintendo 3ds
+U0000027,ellisyolanda,jonesjason@example.com,El Salvador,West Nicole,standard,2025-03-16,71,mobile
+U0000028,mikemoore,cheryl80@example.net,Spain,Sarahville,standard,2027-08-15,57,frige
+U0000029,josephpreston,josephjacobs@example.net,Spain,Jamesview,standard,2023-11-16,26,nintendo 3ds
+U0000030,dking,waltersmaria@example.org,Mexico,West Kellieview,standard,2024-08-12,64,tablet
+U0000031,joycearnold,hhoffman@example.org,El Salvador,New Barry,free,2028-10-05,56,desktop
+U0000032,brandi26,bobbydiaz@example.org,El Salvador,Jasonbury,basic,2020-09-18,39,tablet
+U0000033,gomezanita,vdickson@example.org,Nicaragua,Port Francisco,free,2025-09-19,36,nintendo 3ds
+U0000034,nicolejohnson,kimberly63@example.com,Mexico,Port Jacqueline,free,2023-01-26,72,desktop
+U0000035,ebrennan,jamessellers@example.com,Chile,Loribury,free,2021-09-13,72,smart_tv
+U0000036,andrewlee,joshua14@example.com,Canada,Frazierside,premium,2028-02-25,20,tablet
+U0000037,sheila14,beverlyterrell@example.org,Argentina,New Ryanmouth,premium,2025-03-01,26,desktop
+U0000038,gobrien,cruzbarbara@example.com,El Salvador,Lake Ryanhaven,premium,2021-05-17,75,laptop
+U0000039,michaeljones,cindy14@example.net,Venezuela,Elizabethmouth,premium,2026-07-14,57,frige
+U0000040,jterry,jamesortega@example.com,Honduras,New Ashley,premium,2020-05-10,31,laptop
+U0000041,akelley,justin69@example.net,Canada,Stevenmouth,standard,2019-03-28,53,laptop
+U0000042,williamleon,donnacampbell@example.net,Costa Rica,Clarencebury,basic,2019-01-30,20,mobile
+U0000043,jeffrey32,williamstracey@example.net,Chile,South Robertshire,free,2019-05-09,71,frige
+U0000044,jennifercruz,psanchez@example.net,Canada,Port Michelleville,basic,2022-02-14,58,nintendo 3ds
+U0000045,zrobinson,pwilliams@example.org,Colombia,Andersonmouth,basic,2027-02-10,75,nintendo 3ds
+U0000046,stephanie79,jrivas@example.com,Chile,Lake Michelle,premium,2028-01-21,42,laptop
+U0000047,pgreen,katie87@example.net,Spain,West Scott,free,2026-05-23,43,frige
+U0000048,jimmy55,taylorjesse@example.net,Bolivia,Lake Jason,premium,2024-03-27,71,mobile
+U0000049,irussell,nperry@example.com,Spain,Steinshire,free,2023-07-08,62,frige
+U0000050,gateskathy,wwoods@example.com,Spain,Castanedachester,basic,2021-02-23,28,nintendo 3ds
+U0000051,tracynelson,vjohnson@example.net,Argentina,Ramseymouth,premium,2021-01-21,33,nintendo 3ds
+U0000052,tinaferguson,qvargas@example.org,Chile,Lake Roymouth,free,2023-12-21,67,smart_tv
+U0000053,brentgray,shawnrogers@example.com,USA,Karenchester,free,2020-01-18,75,laptop
+U0000054,mary70,cookemichael@example.net,Brazil,Port Susanton,premium,2024-06-12,46,laptop
+U0000055,herringjames,howelljohn@example.com,Cuba,New Staciemouth,free,2020-11-05,40,mobile
+U0000056,katie29,stricklandfrank@example.com,Cuba,New Anthonyport,standard,2027-10-17,66,nintendo 3ds
+U0000057,tsanders,charlesvaughn@example.net,Venezuela,North Heidi,premium,2026-10-24,62,nintendo 3ds
+U0000058,melissa91,reedross@example.com,Argentina,New Deborahtown,basic,2022-04-30,29,mobile
+U0000059,gshort,oyu@example.com,Costa Rica,South Gregory,free,2027-05-22,36,mobile
+U0000060,christina87,ugraham@example.net,USA,Marcusbury,premium,2024-08-21,74,tablet
+U0000061,ramirezshannon,qhudson@example.com,USA,Anthonymouth,free,2028-07-19,27,smart_tv
+U0000062,tonykelly,matthew94@example.net,Panama,New Stacyland,free,2026-07-28,71,laptop
+U0000063,jenniferfreeman,hannahbrewer@example.com,Cuba,Mcguireland,free,2028-12-25,52,laptop
+U0000064,jeffrey34,thomas85@example.com,Costa Rica,Michaelmouth,free,2025-12-11,21,Wii
+U0000065,kristopher31,leslienewton@example.net,Costa Rica,East Javier,standard,2021-12-04,29,frige
+U0000066,lhill,tina34@example.org,Chile,Harrytown,standard,2023-06-10,24,desktop
+U0000067,joshuamccann,heidi27@example.org,Honduras,New Justinfort,standard,2027-06-07,75,smart_tv
+U0000068,dpeterson,shelley71@example.org,Mexico,Vasquezshire,premium,2025-12-19,52,smart_tv
+U0000069,hernandezlisa,christopher31@example.net,Canada,Obrienbury,basic,2024-09-03,32,tablet
+U0000070,chayes,michelle64@example.net,Guatemala,New Susanville,free,2028-11-10,31,frige
+U0000071,colleenbaker,mooreglenn@example.org,Venezuela,North Ricky,basic,2023-11-30,69,desktop
+U0000072,ocarter,jasmine71@example.net,Panama,West Kristin,free,2026-06-28,68,desktop
+U0000073,ronaldstephens,rebekahserrano@example.org,Spain,East Laurashire,basic,2021-12-19,23,smart_tv
+U0000074,scott74,gbender@example.net,Nicaragua,Kimton,basic,2022-01-20,34,laptop
+U0000075,mnavarro,anthony39@example.net,Ecuador,Port Emilyview,basic,2026-09-16,56,desktop
+U0000076,hinesgregory,lmoon@example.net,El Salvador,Waltersfort,premium,2021-10-25,73,mobile
+U0000077,harrisonricky,elizabeth25@example.com,Canada,Robertsfurt,premium,2028-04-20,33,mobile
+U0000078,gibsonleonard,darrell68@example.org,Mexico,Gutierrezborough,standard,2027-08-25,24,desktop
+U0000079,cindy77,harrisandrea@example.com,Brazil,Gilmorefort,premium,2025-03-09,61,Wii
+U0000080,johnsoncrystal,jennifercollins@example.org,Nicaragua,Davisville,free,2020-04-03,20,tablet
+U0000081,pvalentine,tyronemoran@example.net,Nicaragua,Robertfort,free,2028-05-11,39,tablet
+U0000082,jsanchez,patrickweeks@example.net,Bolivia,Port Chad,basic,2019-06-21,35,frige
+U0000083,ymorgan,lori44@example.net,USA,Grimesmouth,standard,2021-05-10,59,laptop
+U0000084,jreed,ugibson@example.org,Spain,New Patrick,standard,2027-10-01,51,Wii
+U0000085,vwilliams,zthornton@example.com,Panama,Mcneilberg,basic,2021-08-27,71,tablet
+U0000086,ihanna,molly71@example.net,Brazil,Smithberg,premium,2019-04-12,27,frige
+U0000087,jpitts,harrisontanya@example.com,Bolivia,Santosmouth,basic,2021-12-28,26,smart_tv
+U0000088,ofinley,cbrennan@example.net,Cuba,East Crystalport,free,2028-08-17,46,laptop
+U0000089,juliehamilton,hodgesjane@example.org,Colombia,Jacksonport,premium,2022-12-03,35,laptop
+U0000090,williamslaura,michael62@example.org,Chile,Knightburgh,free,2026-05-27,28,Wii
+U0000091,gregorylynch,pharvey@example.com,Ecuador,East Steven,standard,2028-09-10,20,desktop
+U0000092,steve07,erica21@example.com,Guatemala,Vanessaport,premium,2026-08-15,69,frige
+U0000093,dvaughn,james67@example.org,Mexico,South Ashley,free,2028-11-01,32,tablet
+U0000094,victoria40,khill@example.net,Costa Rica,New Julieport,standard,2019-06-06,22,Wii
+U0000095,catherinegomez,christinebyrd@example.net,Guatemala,Lake Colton,standard,2023-11-23,54,smart_tv
+U0000096,parkerscott,jessica14@example.com,Cuba,Thompsonberg,basic,2021-11-09,18,Wii
+U0000097,alyssa42,robin74@example.net,Mexico,Lindamouth,basic,2023-01-31,43,smart_tv
+U0000098,taylortammy,zcoffey@example.net,Ecuador,Christopherfurt,standard,2026-06-10,70,smart_tv
+U0000099,bakerdavid,emily49@example.com,Venezuela,Danielbury,standard,2026-06-24,42,frige
+U0000100,jjohnson,rose31@example.net,Cuba,Blankenshipport,standard,2025-03-20,24,laptop
