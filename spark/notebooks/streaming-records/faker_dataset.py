@@ -1,11 +1,8 @@
-import boto3
 import json
 import uuid
 import random
 from faker import Faker
 from datetime import datetime, timedelta
-import io
-import gzip
 from kafka import KafkaProducer
 import time
 import argparse
@@ -28,12 +25,7 @@ docker exec -it <Spark-Notebook container ID> /bin/bash
 
 
 fake = Faker()
-s3 = boto3.client('s3', region_name='us-east-1')
 
-BUCKET = 'batch-processing-s3-746812'
-PREFIX = 'raw/transactions/'
-RECORDS_PER_FILE = 500_000
-NUM_FILES = 76 
 
 DELAY_MIN = 5   # seconds
 DELAY_MAX = 10  # seconds
@@ -103,22 +95,6 @@ def run_producer(args):
     finally:
         producer.close()
         print(f"Producer closed. Total records sent: {count}")
-
-
-# Function no longer used
-def upload_file(file_num):
-    print(f"Generando archivo {file_num + 1}/{NUM_FILES}...")
-    buffer = io.BytesIO()
-    with gzip.GzipFile(fileobj=buffer, mode='wb') as gz:
-        for i in range(RECORDS_PER_FILE):
-            record = generate_record()
-            line = json.dumps(record) + '\n'
-            gz.write(line.encode('utf-8'))
-    
-    buffer.seek(0)
-    key = f"{PREFIX}part-{str(file_num).zfill(4)}.json.gz"
-    s3.upload_fileobj(buffer, BUCKET, key)
-    print(f"Up in: s3://{BUCKET}/{key}")
 
 # ─────────────────────────────────────────────
 # CLI

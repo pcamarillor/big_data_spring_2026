@@ -1,0 +1,18 @@
+services:
+  mongodb-iteso:
+    image: mongo:7.0
+    container_name: mongodb-iteso
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - spark_cluster_default
+
+volumes:
+  mongo_data:
+
+networks:
+  spark_cluster_default:
+    name: spark-cluster_default
+    external: true
