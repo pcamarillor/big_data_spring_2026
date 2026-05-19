@@ -29,6 +29,7 @@ services:
        - ../../spark/src:/opt/spark/work-dir/src
   spark-notebook:
     image: spark-base:latest
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''
     depends_on:
       - spark-worker
     environment:

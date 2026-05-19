@@ -210,3 +210,13 @@ __marimo__/
 spark/data/quick_commerce/quick_commerce_data_raw.csv
 spark/data/car_service/
 .Trash-0/
+
+spark/data/
+spark/data_neo4j/
+spark/data_hdfs/
+
+# JAR dependencies
+spark/notebooks/jars/
+
+# Generated PDF exports from notebooks
+spark/notebooks/labs/*.pdf
